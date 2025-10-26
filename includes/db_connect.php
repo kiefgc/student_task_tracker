@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "student_tracker";
+$dbname = "student_task_tracker";
 $username = "root";
 $password = "";
 
