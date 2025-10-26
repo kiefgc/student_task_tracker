@@ -1,0 +1,75 @@
+name: PHP CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: student_task_tracker
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mysqli, pdo_mysql
+          coverage: none
+
+      - name: Install dependencies (if using Composer)
+        run: |
+          if [ -f composer.json ]; then
+            composer install
+          fi
+
+      - name: Wait for MySQL to be ready
+        run: sleep 15
+
+      - name: Import database schema
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql -h 127.0.0.1 -u root -proot student_task_tracker < database/student_task_tracker.sql
+
+      - name: Run PHP Lint
+        run: |
+          find . -type f -name "*.php" -exec php -l {} \;
+
+      - name: Run basic integration test
+        run: |
+          php -r "require 'includes/db_connect.php'; echo 'Database connected successfully\n';"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./frontend
+          server-dir: /public_html/
