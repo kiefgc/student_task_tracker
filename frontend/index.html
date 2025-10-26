@@ -25,7 +25,7 @@
             <button class="tab active" onclick="showAll()">All</button>
             <button class="tab" onclick="showPending()">Pending</button>
             <button class="tab" onclick="showInProgress()">In Progress</button>
-            <button class="tab">Completed</button>
+            <button class="tab" onclick="showCompleted()">Completed</button>
           </div>
           <div class="create-task">
             <button class="create-task-button">
@@ -75,6 +75,7 @@
               <span>In Progress</span>
             </li>
           </ul>
+          <ul class="list-pending" id="completed"></ul>
         </div>
       </div>
     </main>
