@@ -51,6 +51,7 @@ include '../includes/dashboard_controller.php';
           <li>Deadline</li>
           <li>Status</li>
         </ul>
+
         <ul class="list-all" id="all">
           <?php foreach ($tasks as $task): ?>
             <li class="tasks-all-item">
@@ -61,25 +62,46 @@ include '../includes/dashboard_controller.php';
             </li>
           <?php endforeach; ?>
         </ul>
-        <ul class="list-pending" id="pending">
-          <li class="tasks-all-item">
-            <span>Read History Chapter</span>
-            <span>Medium</span>
-            <span>2024-09-10</span>
-            <span>Pending</span>
-          </li>
-        </ul>
-        <ul class="list-pending" id="inprogress">
-          <li class="tasks-all-item">
-            <span>Finish Math Assignment</span>
-            <span>High</span>
-            <span>2024-09-15</span>
-            <span>In Progress</span>
-          </li>
-        </ul>
-        <ul class="list-pending" id="completed"></ul>
       </div>
-    </div>
+
+      <!-- Popup Modal -->
+      <div id="taskPopup" class="popup-overlay">
+        <div class="popup-content">
+          <h2>Create New Task</h2>
+          <form id="taskForm">
+            <label>Title</label>
+            <input type="text" id="taskTitle" required />
+            <div class="priority-status">
+              <div class="priority-status-column">
+                <label>Priority</label>
+
+                <select id="taskPriority" required>
+                  <option value="">Select Priority</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+              <div class="priority-status-column">
+                <label>Status</label>
+                <select id="taskStatus" required>
+                  <option value="">Select Status</option>
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+            </div>
+            <label>Deadline</label>
+            <input type="date" id="taskDate" required />
+
+            <div class="popup-buttons">
+              <button type="submit">Add Task</button>
+              <button type="button" onclick="closePopup()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
   </main>
 </body>
 
