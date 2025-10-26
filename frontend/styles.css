@@ -114,4 +114,9 @@ nav {
   padding: 1rem 1rem;
   background-color: #f0f0f5;
   border-radius: 10px;
+  margin-bottom: 1px;
+}
+
+.list-pending {
+  display: none;
 }

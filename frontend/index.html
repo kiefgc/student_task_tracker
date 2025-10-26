@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="index.js"></script>
   </head>
   <body>
     <nav>
@@ -21,8 +22,8 @@
 
         <div class="tabs">
           <div class="tab-group">
-            <button class="tab active">All</button>
-            <button class="tab">Pending</button>
+            <button class="tab active" onclick="showAll()">All</button>
+            <button class="tab" onclick="showPending()">Pending</button>
             <button class="tab">In Progress</button>
             <button class="tab">Completed</button>
           </div>
@@ -44,13 +45,21 @@
             <li>Deadline</li>
             <li>Status</li>
           </ul>
-          <ul class="list-all">
+          <ul class="list-all" id="all">
             <li class="tasks-all-item">
               <span>Finish Math Assignment</span>
               <span>High</span>
               <span>2024-09-15</span>
               <span>In Progress</span>
             </li>
+            <li class="tasks-all-item">
+              <span>Read History Chapter</span>
+              <span>Medium</span>
+              <span>2024-09-10</span>
+              <span>Pending</span>
+            </li>
+          </ul>
+          <ul class="list-pending" id="pending">
             <li class="tasks-all-item">
               <span>Read History Chapter</span>
               <span>Medium</span>
