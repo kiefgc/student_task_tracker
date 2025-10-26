@@ -24,7 +24,7 @@
           <div class="tab-group">
             <button class="tab active" onclick="showAll()">All</button>
             <button class="tab" onclick="showPending()">Pending</button>
-            <button class="tab">In Progress</button>
+            <button class="tab" onclick="showInProgress()">In Progress</button>
             <button class="tab">Completed</button>
           </div>
           <div class="create-task">
@@ -65,6 +65,14 @@
               <span>Medium</span>
               <span>2024-09-10</span>
               <span>Pending</span>
+            </li>
+          </ul>
+          <ul class="list-pending" id="inprogress">
+            <li class="tasks-all-item">
+              <span>Finish Math Assignment</span>
+              <span>High</span>
+              <span>2024-09-15</span>
+              <span>In Progress</span>
             </li>
           </ul>
         </div>
