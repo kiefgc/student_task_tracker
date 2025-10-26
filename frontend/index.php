@@ -1,0 +1,86 @@
+<?php
+include '../includes/db_connect.php';
+include '../includes/dashboard_controller.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <nav>
+    <p class="title">Student Task Tracker</p>
+  </nav>
+  <main class="container">
+    <div class="sidebar">
+      <p class="greeting">Welcome back!</p>
+      <a>Tasks</a>
+      <a>Settings</a>
+    </div>
+    <div class="content">
+      <h1>My Tasks</h1>
+
+      <div class="tabs">
+        <div class="tab-group">
+          <button class="tab active" onclick="showAll()">All</button>
+          <button class="tab" onclick="showPending()">Pending</button>
+          <button class="tab" onclick="showInProgress()">In Progress</button>
+          <button class="tab" onclick="showCompleted()">Completed</button>
+        </div>
+        <div class="create-task">
+          <button class="create-task-button">
+            <img
+              width="23"
+              height="23"
+              src="https://img.icons8.com/ios-glyphs/30/add--v1.png"
+              alt="add--v1" />New Task
+          </button>
+        </div>
+      </div>
+      <div class="tasks-all">
+        <ul class="task-headers">
+          <li>Title</li>
+          <li>Priority</li>
+          <li>Deadline</li>
+          <li>Status</li>
+        </ul>
+        <ul class="list-all" id="all">
+          <?php foreach ($tasks as $task): ?>
+            <li class="tasks-all-item">
+              <span><?= htmlspecialchars($task['title']) ?></span>
+              <span><?= htmlspecialchars($task['priority']) ?></span>
+              <span><?= htmlspecialchars($task['due_date']) ?></span>
+              <span><?= htmlspecialchars($task['status']) ?></span>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+        <ul class="list-pending" id="pending">
+          <li class="tasks-all-item">
+            <span>Read History Chapter</span>
+            <span>Medium</span>
+            <span>2024-09-10</span>
+            <span>Pending</span>
+          </li>
+        </ul>
+        <ul class="list-pending" id="inprogress">
+          <li class="tasks-all-item">
+            <span>Finish Math Assignment</span>
+            <span>High</span>
+            <span>2024-09-15</span>
+            <span>In Progress</span>
+          </li>
+        </ul>
+        <ul class="list-pending" id="completed"></ul>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
