@@ -1,6 +1,6 @@
 <?php
 include '../includes/db_connect.php';
-include '../includes/dashboard_controller.php';
+include '../includes/dashboard.php';
 ?>
 
 <!DOCTYPE html>
@@ -68,14 +68,15 @@ include '../includes/dashboard_controller.php';
       <div id="taskPopup" class="popup-overlay">
         <div class="popup-content">
           <h2>Create New Task</h2>
-          <form id="taskForm">
+          <form action="/Student_task_tracker/includes/create_task.php" method="POST" id="taskForm">
+
             <label>Title</label>
-            <input type="text" id="taskTitle" required />
+            <input type="text" name="taskName" id="taskTitle" required />
+
             <div class="priority-status">
               <div class="priority-status-column">
                 <label>Priority</label>
-
-                <select id="taskPriority" required>
+                <select name="priority" id="taskPriority" required>
                   <option value="">Select Priority</option>
                   <option value="High">High</option>
                   <option value="Medium">Medium</option>
@@ -84,7 +85,7 @@ include '../includes/dashboard_controller.php';
               </div>
               <div class="priority-status-column">
                 <label>Status</label>
-                <select id="taskStatus" required>
+                <select name="status" id="taskStatus" required>
                   <option value="">Select Status</option>
                   <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>
@@ -92,8 +93,9 @@ include '../includes/dashboard_controller.php';
                 </select>
               </div>
             </div>
+
             <label>Deadline</label>
-            <input type="date" id="taskDate" required />
+            <input type="date" name="due_date" id="taskDate" required />
 
             <div class="popup-buttons">
               <button type="submit">Add Task</button>
@@ -102,6 +104,7 @@ include '../includes/dashboard_controller.php';
           </form>
         </div>
       </div>
+
   </main>
 </body>
 
