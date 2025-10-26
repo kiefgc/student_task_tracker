@@ -25,3 +25,16 @@ function showCompleted() {
   document.getElementById("inprogress").style.display = "none";
   document.getElementById("completed").style.display = "block";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const createTaskButton = document.querySelector(".create-task-button");
+  createTaskButton.addEventListener("click", showPopup);
+});
+
+function showPopup() {
+  document.getElementById("taskPopup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("taskPopup").style.display = "none";
+}
